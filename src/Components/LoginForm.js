@@ -1,7 +1,7 @@
-import React from 'react';
-import { withFormik, Form, Field } from 'formik';
-import * as Yup from 'yup';
-import Axios from 'axios';
+import React from './node_modules/react';
+import { withFormik, Form, Field } from './node_modules/formik';
+import * as Yup from './node_modules/yup';
+import Axios from './node_modules/axios';
 
 function LoginForm({ touched, errors }) {
     return(
