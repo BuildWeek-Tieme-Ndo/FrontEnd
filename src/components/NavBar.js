@@ -10,6 +10,8 @@ const NavBar = () => {
       <nav>
         <a href="/">Home</a>
         <a href="/signup">Signup</a>
+        <a href="/client">Manage Clients</a>
+        <a href="/payments">Manage Payments</a>
         <a href="/summary">Summary</a>
         <button onClick={logOut}>Log Out</button>
       </nav>
