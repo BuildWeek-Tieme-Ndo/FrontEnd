@@ -1,5 +1,5 @@
-import React from './node_modules/react';
-import { Route, Link } from './node_modules/react-router-dom'
+import React from 'react';
+import { Route, Link } from 'react-router-dom'
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 
