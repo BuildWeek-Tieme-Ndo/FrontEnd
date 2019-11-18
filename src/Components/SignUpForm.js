@@ -3,29 +3,32 @@ import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 
+
 function SignUpForm({touched, errors}) {
     return(
         <div className='formDiv'>
             <h2>Sign Up</h2>
 
             <Form className='form'>
-                <label/>Email
-                <Field
-                    className='field'
-                    name='email'
-                    type='email'
-                    placeholder='Email'
-                />
-                {touched.email && errors.email && (<p>{errors.email}</p>)}
+                <div className='flexDiv'>
+                    <label/>Email
+                    <Field
+                        className='field'
+                        name='email'
+                        type='email'
+                        placeholder='Email'
+                    />
+                    {touched.email && errors.email && (<p>{errors.email}</p>)}
 
-                <label/>Password
-                <Field
-                    className='field'
-                    name='password'
-                    type='password'
-                    placeholder='Password'
-                />
-                {touched.password && errors.password && (<p>{errors.password}</p>)}
+                    <label/>Password
+                    <Field
+                        className='field'
+                        name='password'
+                        type='password'
+                        placeholder='Password'
+                    />
+                    {touched.password && errors.password && (<p>{errors.password}</p>)}
+                </div>
 
                 <label/>
                 <Field
@@ -36,7 +39,7 @@ function SignUpForm({touched, errors}) {
                 />
                 {touched.confirmPassword && errors.confirmPassword && (<p>{errors.confirmPassword}</p>)}
 
-                <button type='submit'>Sign Up</button>
+                <button type='submit' className='submitBtn'>Sign Up</button>
             </Form>
         </div>
     )
