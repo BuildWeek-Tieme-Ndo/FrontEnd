@@ -1,37 +1,37 @@
 import React from 'react';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import Axios from 'axios';
+import axios from 'axios';
 
 function LoginForm({ touched, errors }) {
-    return(
-        <div className='formDiv'>
-            <h2>Login</h2>
 
-            <Form className='form'>
-                <div className='flexDiv'>
-                    <label/>Email
-                    <Field
-                        className='field'
-                        name='email'
-                        type='email'
-                        placeholder='Email'
-                    />
-                    {touched.email && errors.email && (<p>{errors.email}</p>)}
+  return(
+    <div className='formDiv'>
+      <h2>Login</h2>
+      <Form className='form'>
+        <div className='flexDiv'>
+          <label/>Email
+            <Field
+              className='field'
+              name='email'
+              type='email'
+              placeholder='Email'
+            />
+            {touched.email && errors.email && (<p>{errors.email}</p>)}
 
-                    <label/>Password
-                    <Field
-                        className='field'
-                        name='password'
-                        type='password'
-                        placeholder='Password'
-                    />
-                    {touched.email && errors.email && (<p>{errors.email}</p>)}
-                </div>
-
-                <button type='submit' className='submitBtn'>Login</button>
-            </Form>
+            <label/>Password
+            <Field
+                className='field'
+                name='password'
+                type='password'
+                placeholder='Password'
+            />
+            {touched.email && errors.email && (<p>{errors.email}</p>)}
         </div>
+        <button type='submit'
+            className='submitBtn'>Login</button>
+    </Form>
+</div>
     )
 }
 
@@ -54,12 +54,18 @@ const FormikLogin = withFormik({
     
     //Axios POST call ----------------------
     handleSubmit(values, {setStatus}) {
-        Axios.post('', values)
+        const payload = {
+            email: values.email,
+            password: values.password 
+        };
+        console.log("Sending:",payload);
+
+        axios.post('https://tiemendo.herokuapp.com/api/login', payload)
         .then(res => {
-            console.log('This is the response from the Axios call: ', res)
-            setStatus(res.data)
+            console.log('Success:', res.data);
+            localStorage.setItem('token', res.data);
         })
-        .catch(err => console.log('There was an error in the Axios call: ', err))
+        .catch(err => console.log('Login Error', err))
     }
 })(LoginForm)
 

@@ -68,12 +68,17 @@ const FormikSignUp = withFormik({
 
     //Axios POST call -----------------------------------------
     handleSubmit(values, {setStatus}) {
-        axios.post('', values)
+        const payload = {
+            name: "Michael Bolton",
+            email: values.email,
+            password: values.password
+        };
+        axios.post('https://tiemendo.herokuapp.com/api/register', payload)
         .then(res => {
-            console.log('This is the response from the Axios call: ', res)
+            console.log('Sucessfully registered:', res);
             setStatus(res.data);
         })
-        .catch(err => console.log('There was an error with the Axios call: ', err.res))
+        .catch(err => console.log('Registration error:', err.res))
     }
 })(SignUpForm)
 
