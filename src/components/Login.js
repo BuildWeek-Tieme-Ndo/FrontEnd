@@ -1,4 +1,5 @@
 import React from 'react';
+import LoginForm from './LoginForm'
 
 const Login = () => {
 
@@ -8,8 +9,8 @@ const Login = () => {
 
   return (
     <div>
-      <h2>Login Page</h2>
-      <button onClick={fakeLogin}>Fake Login!</button>
+      <button onClick={fakeLogin}>Temporary Fake Login!</button>
+      <LoginForm />
     </div>
   )
 }
