@@ -8,6 +8,10 @@ body{
   /* font-size: 62.5%; */
 }
 
+img{
+  width: 100px;
+}
+
 .links{
   border: 3px solid #46d1a3;
   border-radius: 10px;
@@ -46,7 +50,7 @@ body{
 
 .field{
   border: 2px solid #46d1a3;
-  margin: 2px auto 25px auto;
+  margin: 2px auto 20px auto;
   padding: 10px;
   border-radius: 7px;
   width: 80%;
@@ -55,6 +59,11 @@ body{
 .flexDiv{
   display: flex;
   flex-direction: column;
+}
+
+.error{
+  color: red;
+  margin: -20px auto 10px auto;
 }
 
 .submitBtn{
