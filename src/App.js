@@ -9,6 +9,7 @@ import Login from './components/Login';
 import Summary from './components/Summary';
 import Client from './components/Client';
 import Payments from './components/Payments';
+import logo from '../src/images/logo.jpg'
 
 
 import './App.css';
@@ -18,6 +19,7 @@ function App() {
     <div className="App">
       <NavBar /> {/* TODO: Move inside individual pages? */}
       <h1>Tieme Ndo</h1>
+      <img src={logo} alt='Tieme Dno logo'/>
       <Switch>
         <Private path="/summary" component={Summary} />
         <Private path="/client" component={Client} />

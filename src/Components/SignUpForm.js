@@ -1,5 +1,5 @@
 import React from 'react';
-import { withFormik, Form, Field } from 'formik';
+import { withFormik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 
@@ -18,7 +18,7 @@ function SignUpForm({touched, errors}) {
                         type='text'
                         placeholder='Name'
                     />
-                    {touched.name && errors.name && (<p>{errors.name}</p>)}
+                    <ErrorMessage name="email" component='p' className='error'/>
 
                     <label/>Email
                     <Field
@@ -27,7 +27,7 @@ function SignUpForm({touched, errors}) {
                         type='email'
                         placeholder='Email'
                     />
-                    {touched.email && errors.email && (<p>{errors.email}</p>)}
+                    <ErrorMessage name="email" component='p' className='error'/>
 
                     <label/>Password
                     <Field
@@ -36,7 +36,7 @@ function SignUpForm({touched, errors}) {
                         type='password'
                         placeholder='Password'
                     />
-                    {touched.password && errors.password && (<p>{errors.password}</p>)}
+                    <ErrorMessage name="password" component='p' className='error'/>
                 </div>
 
                 <label/>
@@ -46,7 +46,7 @@ function SignUpForm({touched, errors}) {
                     type='password'
                     placeholder='Confirm Password'
                 />
-                {touched.confirmPassword && errors.confirmPassword && (<p>{errors.confirmPassword}</p>)}
+                <ErrorMessage name="confirmPassword" component='p' className='error'/>
 
                 <button type='submit' className='submitBtn'>Sign Up</button>
             </Form>
