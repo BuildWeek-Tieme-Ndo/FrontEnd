@@ -1,6 +1,5 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Initial from './components/Initial'
 import Private from './utils/PrivateRoute';
 
 import NavBar from './components/NavBar';
@@ -11,7 +10,6 @@ import Client from './components/Client';
 import Payments from './components/Payments';
 import logo from '../src/images/logo.jpg'
 
-
 import './App.css';
 
 function App() {
@@ -19,7 +17,7 @@ function App() {
     <div className="App">
       <NavBar /> {/* TODO: Move inside individual pages? */}
       <h1>Tieme Ndo</h1>
-      <img src={logo} alt='Tieme Dno logo'/>
+      <img src={logo} alt='Tieme Ndo logo'/>
       <Switch>
         <Private path="/summary" component={Summary} />
         <Private path="/client" component={Client} />

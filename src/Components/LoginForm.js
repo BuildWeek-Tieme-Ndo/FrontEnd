@@ -29,44 +29,44 @@ function LoginForm({ touched, errors }) {
             <ErrorMessage name="password" component='p' className='error'/>
         </div>
         <button type='submit'
-            className='submitBtn'>Login</button>
-    </Form>
-</div>
-    )
+          className='submitBtn'>Login</button>
+      </Form>
+    </div>
+  )
 }
 
 //Using Formik ---------------------------
 const FormikLogin = withFormik({
-    mapPropsToValues({ email, password }) {
-        return {
-            email: email || '',
-            password: password || ''
-        }
-    },
+  mapPropsToValues({ email, password }) {
+      return {
+        email: email || '',
+        password: password || ''
+      }
+  },
 
-    //Validation ---------------------------
-    validationSchema: Yup.object().shape({
-        email: Yup.string()
-            .required('Required'),
-        password: Yup.string()
-            .required('Required')
-    }),
+  //Validation ---------------------------
+  validationSchema: Yup.object().shape({
+    email: Yup.string()
+      .required('Required'),
+    password: Yup.string()
+      .required('Required')
+  }),
     
-    //Axios POST call ----------------------
-    handleSubmit(values, {setStatus}) {
-        const payload = {
-            email: values.email,
-            password: values.password 
-        };
-        console.log("Sending:",payload);
+  //Axios POST call ----------------------
+  handleSubmit(values, {setStatus}) {
+    const payload = {
+      email: values.email,
+      password: values.password 
+    };
+    console.log("Sending:",payload);
 
-        axios.post('https://tiemendo.herokuapp.com/api/login', payload)
-        .then(res => {
-            console.log('Success:', res.data);
-            localStorage.setItem('token', res.data);
-        })
-        .catch(err => console.log('Login Error', err))
-    }
+    axios.post('https://tiemendo.herokuapp.com/api/login', payload)
+    .then(res => {
+      console.log('Success:', res.data);
+      localStorage.setItem('token', res.data.payload);
+    })
+    .catch(err => console.log('Login Error', err));
+  }
 })(LoginForm)
 
 export default FormikLogin;
