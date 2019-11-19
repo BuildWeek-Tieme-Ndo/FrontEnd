@@ -11,6 +11,15 @@ function SignUpForm({touched, errors}) {
 
             <Form className='form'>
                 <div className='flexDiv'>
+                    <label/>Name
+                    <Field
+                        className='field'
+                        name='name'
+                        type='text'
+                        placeholder='Name'
+                    />
+                    {touched.name && errors.name && (<p>{errors.name}</p>)}
+
                     <label/>Email
                     <Field
                         className='field'
@@ -47,8 +56,9 @@ function SignUpForm({touched, errors}) {
 
 //Using Formik -----------------------------------------------
 const FormikSignUp = withFormik({
-    mapPropsToValues({ email, password, confirmPassword }) {
+    mapPropsToValues({ name, email, password, confirmPassword }) {
         return {
+            name: name || '',
             email: email || '',
             password: password || '',
             confirmPassword : confirmPassword || ''
@@ -57,6 +67,8 @@ const FormikSignUp = withFormik({
 
     //Validation ----------------------------------------------
     validationSchema: Yup.object().shape({
+        name: Yup.string()
+            .required('Required'),
         email: Yup.string()
             .required('Required'),
         password: Yup.string()
@@ -69,7 +81,7 @@ const FormikSignUp = withFormik({
     //Axios POST call -----------------------------------------
     handleSubmit(values, {setStatus}) {
         const payload = {
-            name: "Michael Bolton",
+            name: values.name,
             email: values.email,
             password: values.password
         };
