@@ -1,7 +1,7 @@
 import React from 'react';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import Axios from 'axios';
+import axios from 'axios';
 
 function LoginForm({ touched, errors }) {
     return(
@@ -54,7 +54,7 @@ const FormikLogin = withFormik({
     
     //Axios POST call ----------------------
     handleSubmit(values, {setStatus}) {
-        Axios.post('', values)
+        axios.post('', values)
         .then(res => {
             console.log('This is the response from the Axios call: ', res)
             setStatus(res.data)
