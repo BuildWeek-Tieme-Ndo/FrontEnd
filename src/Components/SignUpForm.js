@@ -1,5 +1,5 @@
 import React from 'react';
-import { withFormik, Form, Field } from 'formik';
+import { withFormik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 
@@ -11,6 +11,15 @@ function SignUpForm({touched, errors}) {
 
             <Form className='form'>
                 <div className='flexDiv'>
+                    <label/>Name
+                    <Field
+                        className='field'
+                        name='name'
+                        type='text'
+                        placeholder='Name'
+                    />
+                    <ErrorMessage name="email" component='p' className='error'/>
+
                     <label/>Email
                     <Field
                         className='field'
@@ -18,7 +27,7 @@ function SignUpForm({touched, errors}) {
                         type='email'
                         placeholder='Email'
                     />
-                    {touched.email && errors.email && (<p>{errors.email}</p>)}
+                    <ErrorMessage name="email" component='p' className='error'/>
 
                     <label/>Password
                     <Field
@@ -27,7 +36,7 @@ function SignUpForm({touched, errors}) {
                         type='password'
                         placeholder='Password'
                     />
-                    {touched.password && errors.password && (<p>{errors.password}</p>)}
+                    <ErrorMessage name="password" component='p' className='error'/>
                 </div>
 
                 <label/>
@@ -37,7 +46,7 @@ function SignUpForm({touched, errors}) {
                     type='password'
                     placeholder='Confirm Password'
                 />
-                {touched.confirmPassword && errors.confirmPassword && (<p>{errors.confirmPassword}</p>)}
+                <ErrorMessage name="confirmPassword" component='p' className='error'/>
 
                 <button type='submit' className='submitBtn'>Sign Up</button>
             </Form>
@@ -47,8 +56,9 @@ function SignUpForm({touched, errors}) {
 
 //Using Formik -----------------------------------------------
 const FormikSignUp = withFormik({
-    mapPropsToValues({ email, password, confirmPassword }) {
+    mapPropsToValues({ name, email, password, confirmPassword }) {
         return {
+            name: name || '',
             email: email || '',
             password: password || '',
             confirmPassword : confirmPassword || ''
@@ -57,6 +67,8 @@ const FormikSignUp = withFormik({
 
     //Validation ----------------------------------------------
     validationSchema: Yup.object().shape({
+        name: Yup.string()
+            .required('Required'),
         email: Yup.string()
             .required('Required'),
         password: Yup.string()
@@ -69,7 +81,7 @@ const FormikSignUp = withFormik({
     //Axios POST call -----------------------------------------
     handleSubmit(values, {setStatus}) {
         const payload = {
-            name: "Michael Bolton",
+            name: values.name,
             email: values.email,
             password: values.password
         };

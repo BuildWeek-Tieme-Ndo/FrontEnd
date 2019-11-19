@@ -1,5 +1,5 @@
 import React from 'react';
-import { withFormik, Form, Field } from 'formik';
+import { withFormik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 
@@ -11,22 +11,22 @@ function LoginForm({ touched, errors }) {
       <Form className='form'>
         <div className='flexDiv'>
           <label/>Email
-          <Field
-            className='field'
-            name='email'
-            type='email'
-            placeholder='Email'
-          />
-          {touched.email && errors.email && (<p>{errors.email}</p>)}
+            <Field
+              className='field'
+              name='email'
+              type='email'
+              placeholder='Email'g
+            />
+            <ErrorMessage name="email" component='p' className='error'/>
 
-          <label/>Password
-          <Field
-            className='field'
-            name='password'
-            type='password'
-            placeholder='Password'
-          />
-          {touched.email && errors.email && (<p>{errors.email}</p>)}
+            <label/>Password
+            <Field
+                className='field'
+                name='password'
+                type='password'
+                placeholder='Password'
+            />
+            <ErrorMessage name="password" component='p' className='error'/>
         </div>
         <button type='submit'
           className='submitBtn'>Login</button>
