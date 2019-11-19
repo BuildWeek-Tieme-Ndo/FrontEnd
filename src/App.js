@@ -1,6 +1,5 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Initial from './components/Initial'
 import Private from './utils/PrivateRoute';
 
 import NavBar from './components/NavBar';
@@ -9,7 +8,6 @@ import Login from './components/Login';
 import Summary from './components/Summary';
 import Client from './components/Client';
 import Payments from './components/Payments';
-
 
 import './App.css';
 
