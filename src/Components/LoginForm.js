@@ -15,7 +15,7 @@ function LoginForm({ touched, errors }) {
               className='field'
               name='email'
               type='email'
-              placeholder='Email'g
+              placeholder='Email'
             />
             <ErrorMessage name="email" component='p' className='error'/>
 
@@ -37,10 +37,11 @@ function LoginForm({ touched, errors }) {
 
 //Using Formik ---------------------------
 const FormikLogin = withFormik({
-  mapPropsToValues({ email, password }) {
+  mapPropsToValues({ email, password, history }) {
       return {
         email: email || '',
-        password: password || ''
+        password: password || '',
+        history: history
       }
   },
 
@@ -58,12 +59,16 @@ const FormikLogin = withFormik({
       email: values.email,
       password: values.password 
     };
-    console.log("Sending:",payload);
+    console.log("Sending:", payload);
 
     axios.post('https://tiemendo.herokuapp.com/api/login', payload)
     .then(res => {
       console.log('Success:', res.data);
       localStorage.setItem('token', res.data.payload);
+      localStorage.setItem('userID', res.data.user.id);
+      localStorage.setItem('userName', res.data.user.name);
+      // Redirect to Dashboard
+      values.history.push('/dashboard');
     })
     .catch(err => console.log('Login Error', err));
   }

@@ -1,3 +1,8 @@
+:root {
+  --ndo-teal: #46d1a3;
+  --ndo-orange:#ee8e2d;
+}
+
 body{
   background-image: url(./images/background.jpg);
 }
@@ -112,4 +117,35 @@ a:hover{
   color: black;
   background-color: white;
   border: 2px solid #46d1a3;
+}
+
+.workspace {
+  background-color: rgba(255,255,255,.95);
+  border: 3px solid #46d1a3;
+  border-radius: 5px;
+  margin: 20px;
+}
+
+.dashboard-choices {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 10rem 0 10rem 0;
+}
+
+.big-button {
+  height: 8rem;
+  width: 20rem;
+  border-radius: 10px;
+  border: 3px solid var(--ndo-teal);
+  background-color:var(--ndo-teal);
+  color: white;
+  font-size: 1.5rem;
+  transition: .25s;
+}
+
+.big-button:hover{
+  color: black;
+  background-color: white;
+  border: 3px solid var(--ndo-teal);
 }
