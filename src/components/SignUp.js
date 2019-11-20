@@ -1,11 +1,11 @@
 import React from 'react';
 import SignUpForm from './SignUpForm';
 
-const SignUp = () => {
+const SignUp = props => {
 
   return (
     <div>
-      <SignUpForm />
+      <SignUpForm history={props.history} />
     </div>
   )
 }

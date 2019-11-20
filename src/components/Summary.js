@@ -4,13 +4,10 @@ import authAxios from '../utils/authaxios';
 const Summary = () => {
 
   const getSummary = () => {
-    authAxios.get('')
-    .then (res => {
-      console.log("Successful reply:", res);
-    })
-    .catch(err => {
-      console.log("Error fetching results:", err);
-    });
+    authAxios.get('https://tiemendo.herokuapp.com/api/auth/loans')
+    .then (res => console.log(res))
+    .catch(err => console.log('Loan list error:', err)
+    );
   }
 
   return (

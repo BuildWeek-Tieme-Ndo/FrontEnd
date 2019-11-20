@@ -1,16 +1,16 @@
 import React from 'react';
 import LoginForm from './LoginForm'
 
-const Login = () => {
+const Login = props => {
 
-  const fakeLogin = () => {
+  const fakeLogin = props => {  // TODO: Remove
     localStorage.setItem('token', "Secret decoder ring.");
   }
 
   return (
     <div>
       <button onClick={fakeLogin}>Temporary Fake Login!</button>
-      <LoginForm />
+      <LoginForm history={props.history} />
     </div>
   )
 }
