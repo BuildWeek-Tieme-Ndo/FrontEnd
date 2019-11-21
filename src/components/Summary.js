@@ -32,14 +32,14 @@ function SimpleTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {props.map(row => (
+          {/* {props.map(row => (
             <TableRow key={props.name}>
               <TableCell component="th" scope="row">{props.name}</TableCell>
               <TableCell>{props.village}</TableCell>
               <TableCell>{props.loan_amt}</TableCell>
               <TableCell>{props.loan_init}</TableCell>
             </TableRow>
-          ))}
+          ))} */}
         </TableBody>
       </Table>
     </Paper>
