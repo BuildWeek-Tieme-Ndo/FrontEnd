@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import authAxios from '../utils/authaxios';
 
 import Table from '@material-ui/core/Table';
@@ -50,20 +51,25 @@ function SimpleTable(props) {
 //Material UI Table ^^^-------------------------------------------------
 
 const Summary = () => {
-
+  const dispatch = useDispatch();
+ 
   // TODO: Remove before flight. Also the button that calls it.
-  const getSummary = () => {
-    authAxios.get('https://tiemendo.herokuapp.com/api/auth/loans')
-    .then (res => console.log(res))
-    .catch(err => console.log('Loan list error:', err)
-    );
-  }
+
+  authAxios.get('https://tiemendo.herokuapp.com/api/auth/loans')
+  .then (res => {
+    console.log(res);
+    dispatch({
+      type: 'LOANS_NEW_LIST',
+      payload: res.data
+    })
+  })
+  .catch(err => console.log('Loan list error:', err)
+  );
 
   return (
     <div className="workspace">
       <h2>The summary page. Let's summarize.</h2>
-       {/* TODO: Remove this button */}
-      <button onClick={getSummary}>Get data!</button>
+
       {SimpleTable(/* Get the state data here */)}
     </div>
   )

@@ -10,7 +10,6 @@ import ClientList from './components/ClientList';
 import LoanList from './components/LoanList';
 import Payments from './components/Payments';
 import Dashboard from './components/Dashboard';
-import logo from './images/logo.jpg'
 
 import './App.css';
 
@@ -20,7 +19,6 @@ function App() {
     <div className="App">
       <NavBar />
       <h1>Tieme Ndo</h1>
-      <img src={logo} alt='Tieme Ndo logo'/>
       <Switch>
         <Private path="/reports" component={Summary} />
         <Private path="/loans" component={LoanList} />
