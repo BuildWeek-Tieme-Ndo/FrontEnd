@@ -6,8 +6,6 @@ const NavBar = props => {
   console.log("Nav props:", props);
   const logOut = () => {
     localStorage.clear();
-    // FIXME: Neither of these work. Send me home!
-    // return (<Redirect to="/" />);
     props.history.push('/');
   }
 
