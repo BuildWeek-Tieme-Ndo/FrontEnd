@@ -3,6 +3,7 @@ import authAxios from '../utils/authaxios';
 
 const Summary = () => {
 
+  // TODO: Remove before flight. Also the button that calls it.
   const getSummary = () => {
     authAxios.get('https://tiemendo.herokuapp.com/api/auth/loans')
     .then (res => console.log(res))
