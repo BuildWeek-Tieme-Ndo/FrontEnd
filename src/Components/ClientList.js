@@ -20,6 +20,9 @@ const ClientList = props => {
   return (
     <div className="workspace">
       <h2>Check the console for a list of all the clients!</h2>
+        <ul>
+          <li></li>
+        </ul>
     </div>
   );
 }
