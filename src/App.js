@@ -6,7 +6,7 @@ import NavBar from './components/NavBar';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
 import Summary from './components/Summary';
-import ClientList from './components/ClientList';
+import ClientList from './components/ClientList.js';
 import LoanList from './components/LoanList';
 import Payments from './components/Payments';
 import Dashboard from './components/Dashboard';
