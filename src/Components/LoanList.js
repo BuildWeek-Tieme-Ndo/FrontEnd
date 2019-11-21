@@ -1,10 +1,18 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import authAxios from '../utils/authaxios';
 
 const LoanList = props => {
+  const dispatch = useDispatch();
 
   authAxios.get('https://tiemendo.herokuapp.com/api/auth/loans')
-  .then (res => console.log(res))
+  .then (res => {
+    console.log(res);
+    dispatch({
+      type: 'LOANS_NEW_LIST',
+      payload: res.data
+    })
+  })
   .catch(err => console.log('Loan list error:', err)
   );
 

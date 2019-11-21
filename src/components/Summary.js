@@ -7,6 +7,8 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+
+
 // Material UI Table --------------------------------------------------
 interface Props {
   rows: [{
@@ -32,14 +34,14 @@ function SimpleTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {/* {props.map(row => (
+          {/* props.map(row => (
             <TableRow key={props.name}>
               <TableCell component="th" scope="row">{props.name}</TableCell>
               <TableCell>{props.village}</TableCell>
               <TableCell>{props.loan_amt}</TableCell>
               <TableCell>{props.loan_init}</TableCell>
             </TableRow>
-          ))} */}
+          )) */}
         </TableBody>
       </Table>
     </Paper>
@@ -49,6 +51,7 @@ function SimpleTable(props) {
 
 const Summary = () => {
 
+  // TODO: Remove before flight. Also the button that calls it.
   const getSummary = () => {
     authAxios.get('https://tiemendo.herokuapp.com/api/auth/loans')
     .then (res => console.log(res))
@@ -57,12 +60,12 @@ const Summary = () => {
   }
 
   return (
-    <>
+    <div className="workspace">
       <h2>The summary page. Let's summarize.</h2>
+       {/* TODO: Remove this button */}
       <button onClick={getSummary}>Get data!</button>
-      <p>Expect to see a super-cool table here.</p>
-      {SimpleTable()}
-    </>
+      {SimpleTable(/* Get the state data here */)}
+    </div>
   )
 }
 
