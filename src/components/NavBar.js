@@ -1,39 +1,40 @@
 import React from 'react';
-// import { Redirect } from 'react-router-dom';
-
+import { NavLink, withRouter } from 'react-router-dom';
+import logo from '../images/logo.jpg'
 const NavBar = props => {
 
   console.log("Nav props:", props);
-  const logOut = props => {
+  const logOut = () => {
     localStorage.clear();
-    // FIXME: Neither of these work. Send me home!
-    // return (<Redirect to="/" />);
-    // props.history.push('/');
+    props.history.push('/');
   }
 
   if (localStorage.getItem('token')) { // We're logged in
     return (
       <div className="main-nav">
+        <img src={logo} alt='Tieme Ndo'/>
         <nav>
-          <a href="/dashboard">Dashboard</a>
-          <a href="/reports">Reports</a>
-          <a href="/clients">Clients</a>
-          <a href="/loans">Loans</a>
-          <button onClick={logOut}>Log Out</button>
+          <NavLink to="/dashboard">Dashboard</NavLink>
+          <NavLink to="/reports">Reports</NavLink>
+          <NavLink to="/clients">Clients</NavLink>
+          <NavLink to="/loans">Loans</NavLink>
         </nav>
+        <div>{localStorage.getItem('userName')}</div>
+        <button onClick={logOut}>Log Out</button>
       </div>
     )
   }
   else { // Logged out
     return (
       <div className="main-nav">
+        <img src={logo} alt='Tieme Ndo'/>
         <nav>
-          <a href="/">Home</a>
-          <a href="/signup">Signup</a>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/signup">Signup</NavLink>
         </nav>
       </div>
     )
   }
 }
 
-export default NavBar;
+export default withRouter(NavBar);

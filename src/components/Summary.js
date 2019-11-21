@@ -1,5 +1,6 @@
 import React from 'react';
-import authAxios from '../utils/authaxios';
+import { useDispatch, connect } from 'react-redux';
+// import authAxios from '../utils/authaxios';
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -10,14 +11,14 @@ import Paper from '@material-ui/core/Paper';
 
 
 // Material UI Table --------------------------------------------------
-interface Props {
-  rows: [{
-    name: '',
-    village: '',
-    loan_amt: '',
-    loan_init: ''
-  }]
-};
+// interface Props {
+//   rows: [{
+//     name: '',
+//     village: '',
+//     loan_amt: '',
+//     loan_init: ''
+//   }]
+// };
 
 
 function SimpleTable(props) {
@@ -49,24 +50,39 @@ function SimpleTable(props) {
 }
 //Material UI Table ^^^-------------------------------------------------
 
-const Summary = () => {
+const Summary = props => {
+  // const dispatch = useDispatch();
+  console.log("Summary props:", props);
+  
+  // FIXME: Infinite loop. Use a useEffect?
+  // useEffect(() => {
+  //   authAxios.get('https://tiemendo.herokuapp.com/api/auth/loans')
+  //   .then (res => {
+  //     console.log(res);
+  //     dispatch({
+  //       type: 'LOANS_NEW_LIST',
+  //       payload: res.data
+  //     })
+  //   })
+  //   .catch(err => console.log('Loan list error:', err)
+  //   );
+  // },[dispatch]);
 
-  // TODO: Remove before flight. Also the button that calls it.
-  const getSummary = () => {
-    authAxios.get('https://tiemendo.herokuapp.com/api/auth/loans')
-    .then (res => console.log(res))
-    .catch(err => console.log('Loan list error:', err)
-    );
-  }
 
   return (
     <div className="workspace">
-      <h2>The summary page. Let's summarize.</h2>
-       {/* TODO: Remove this button */}
-      <button onClick={getSummary}>Get data!</button>
+      <h2>Reports of loan information</h2>
+
       {SimpleTable(/* Get the state data here */)}
     </div>
   )
 }
 
-export default Summary;
+const mapStateToProps = (state) => {
+  return {
+    loans: state.loans,
+    clients: state.clients
+  }
+}
+
+export default connect(mapStateToProps)(Summary);
