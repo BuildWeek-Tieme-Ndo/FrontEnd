@@ -1,6 +1,5 @@
 import React from 'react';
-import { useDispatch, connect } from 'react-redux';
-// import authAxios from '../utils/authaxios';
+import { connect } from 'react-redux';
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -41,8 +40,7 @@ function SimpleTable(props) {
 const Summary = props => {
   // const dispatch = useDispatch();
   console.log("Summary props:", props);
-  
-  console.log("length of loans:", props.loans.length);
+
   let allRows=[];
   for (let i=0; i<props.loans.length; i++) {
     let client = props.clients.find( ({ id }) => id === props.loans[i].client_id);
@@ -53,21 +51,6 @@ const Summary = props => {
   }
 
   console.log(allRows);
-
-  // let allRows = [];
-  // props.loans.foreach(item => {
-  //   let currentClient = props.clients.find( ({ client_id }) => 
-  //     client_id === item.client_id);
-  //   let currentRow = { ...currentClient, ...item};
-  //   console.log(currentRow);
-  //   allRows.push(currentRow);
-  // });
-//  let currentLoan = props.loans[0];
-//  const currentClient = props.clients[currentLoan.client_id];
-// The next line causes key collisions, so order is important:
-//  const currentCombo = {...currentClient, ...currentLoan};
-//  console.log("Combo Burrito:", currentCombo);
-
 
   return (
     <div className="workspace">

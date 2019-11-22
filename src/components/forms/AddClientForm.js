@@ -4,7 +4,7 @@ import { withFormik, Form, Field, ErrorMessage } from 'formik';
 import axiosWithAuth from '../../utils/authaxios';
 
 const AddClientForm = props => {
-  const dispatch = props.dispatch;
+  // const dispatch = props.dispatch;
   console.log("AddClientForm props:", props);
 
   return (
@@ -54,11 +54,6 @@ const AddClientForm = props => {
     </div>
   )
 
-}
-
-const stupidFunction = (payload) => {
-  // const dispatch = useDispatch();
-  // dispatch({ type: 'ADD_NEW_CLIENT', payload: payload });
 }
 
 //Using Formik ----------------------------------------------------
