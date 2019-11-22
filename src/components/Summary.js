@@ -9,18 +9,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-
-// Material UI Table --------------------------------------------------
-// interface Props {
-//   rows: [{
-//     name: '',
-//     village: '',
-//     loan_amt: '',
-//     loan_init: ''
-//   }]
-// };
-
-
 function SimpleTable(props) {
 
   return (
@@ -54,19 +42,31 @@ const Summary = props => {
   // const dispatch = useDispatch();
   console.log("Summary props:", props);
   
-  // FIXME: Infinite loop. Use a useEffect?
-  // useEffect(() => {
-  //   authAxios.get('https://tiemendo.herokuapp.com/api/auth/loans')
-  //   .then (res => {
-  //     console.log(res);
-  //     dispatch({
-  //       type: 'LOANS_NEW_LIST',
-  //       payload: res.data
-  //     })
-  //   })
-  //   .catch(err => console.log('Loan list error:', err)
-  //   );
-  // },[dispatch]);
+  console.log("length of loans:", props.loans.length);
+  let allRows=[];
+  for (let i=0; i<props.loans.length; i++) {
+    let client = props.clients.find( ({ id }) => id === props.loans[i].client_id);
+    console.log(client.name);
+    // The next line causes key collisions, so order is important:
+    let currentRow = {...client, ...props.loans[i]};
+    allRows.push(currentRow);
+  }
+
+  console.log(allRows);
+
+  // let allRows = [];
+  // props.loans.foreach(item => {
+  //   let currentClient = props.clients.find( ({ client_id }) => 
+  //     client_id === item.client_id);
+  //   let currentRow = { ...currentClient, ...item};
+  //   console.log(currentRow);
+  //   allRows.push(currentRow);
+  // });
+//  let currentLoan = props.loans[0];
+//  const currentClient = props.clients[currentLoan.client_id];
+// The next line causes key collisions, so order is important:
+//  const currentCombo = {...currentClient, ...currentLoan};
+//  console.log("Combo Burrito:", currentCombo);
 
 
   return (

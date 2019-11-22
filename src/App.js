@@ -32,4 +32,23 @@ function App() {
   );
 }
 
+// TODO: Add some individual routes, like this:
+/* <Route
+        path="/movies/:id"
+        render={props => {
+          return <Movie {...props} addToSavedList={addToSavedList} />;
+        }}
+      />
+      <Route
+        exact
+        path="/update-movie/:id"
+        render={props => (
+          <UpdateForm {...props} movies={movies} updateMovies={setMovies} />
+        )}
+      />  */
+
+
+
+
+
 export default App;
