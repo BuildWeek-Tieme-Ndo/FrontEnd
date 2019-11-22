@@ -4,7 +4,7 @@ import { useDispatch, connect } from 'react-redux';
 import AddClientForm from './forms/AddClientForm';
 
 const ClientList = props => {
-
+  const dispatch = useDispatch();
   console.log("ClientList props:", props);
   // const dispatch = useDispatch();
 
@@ -25,7 +25,7 @@ const ClientList = props => {
         <ul>
           <li>[map here]</li>
         </ul>
-        <AddClientForm />
+        <AddClientForm dispatch={dispatch} history={props.history}/>
     </div>
   );
 }

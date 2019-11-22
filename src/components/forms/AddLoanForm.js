@@ -30,7 +30,7 @@ const AddLoanForm = () => {
   // TODO: Change client ID to dropdown
   return (
     <div>
-      <h2>Add a new Client</h2>
+      <h2>Add a new Loan</h2>
 
       <Form className='form'>
         <div className='flexDiv'>
