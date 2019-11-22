@@ -1,25 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import authAxios from '../utils/authaxios';
+import axiosWithAuth from '../utils/authaxios';
 
 const Dashboard = props => {
   const userName = localStorage.getItem("userName");
   const dispatch = useDispatch();
 
+  useEffect(() => {
   // -- Get loans --
-  authAxios.get('https://tiemendo.herokuapp.com/api/auth/loans')
+  axiosWithAuth().get('https://tiemendo.herokuapp.com/api/auth/loans')
     .then (res => {
-      console.log(res);
+      console.log(localStorage.getItem('token'));
       dispatch({
         type: 'LOANS_NEW_LIST',
         payload: res.data
       })
     })
-    .catch(err => console.log('Loan list error:', err)
+    .catch(err => {
+      console.log('Loan list error:', err.response);
+      console.log('token',localStorage.getItem('token'));
+    }
   );
 
   // -- Get clients --
-  authAxios.get('https://tiemendo.herokuapp.com/api/auth/clients')
+  axiosWithAuth().get('https://tiemendo.herokuapp.com/api/auth/clients')
   .then ( res => {
     console.log(res);
     dispatch({
@@ -29,6 +33,7 @@ const Dashboard = props => {
   })
   .catch(err => console.log('Client list error:', err)
   );
+  },[]);
 
   return (
     <div className="main-dashboard workspace">

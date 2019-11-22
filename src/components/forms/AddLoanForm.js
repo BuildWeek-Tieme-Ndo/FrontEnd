@@ -1,18 +1,20 @@
 import React, { useEffect } from 'react';
 import { withFormik, Form, Field, ErrorMessage } from 'formik';
 import authAxios from '../../utils/authaxios';
+import * as Yup from 'yup';
+import axios from 'axios';
 
 const AddLoanForm = () => {
-
+  // console.log ("AddLoanForm Props:", props);
   const payload = {
-    client_id:  "",    // Required (not in form)
+    client_id:  "",    // Required
     loan_amt:   "",    // Required
     init_date:  "",    // Required
     due_date:   "",    // Required
   }
 
   const handleSubmit = (values, { setStatus }) => {
-     payload.client_id = localStorage.getItem('userID');
+    // payload.client_id = localStorage.getItem('userID');
     // authAxios call
     authAxios.put('https://tiemendo.herokuapp.com/api/', payload)
       .then(res => {
@@ -25,19 +27,28 @@ const AddLoanForm = () => {
       })
   };
 
+  // TODO: Change client ID to dropdown
   return (
     <div>
       <h2>Add a new Client</h2>
 
       <Form className='form'>
         <div className='flexDiv'>
+        <label/>Client Name/ID
+          <Field
+            className='field'
+            name='client_id'
+            type='number'
+            placeholder='Client ID'
+          />
+
           <label/>Loan Amount
           <Field
-             className='field'
-             name='loan-amt'
-             type='text'
-             placeholder='Amount'
-           />
+            className='field'
+            name='loan-amt'
+            type='text'
+            placeholder='Amount (Cedi)'
+          />
           <ErrorMessage name="loan_amt" component='p' className='error'/>
 
           <label/>Initial Date
@@ -68,8 +79,9 @@ const AddLoanForm = () => {
 
 //Using Formik -----------------------------------------------
 const FormikAddLoanForm = withFormik({
-  mapPropsToValues({ loan_amt, init_date, due_date, history }) {
+  mapPropsToValues({ client_id, loan_amt, init_date, due_date, history }) {
     return {
+      client_id: client_id || '',
       loan_amt: loan_amt || '',
       init_date: init_date || '',
       due_date: due_date || '',

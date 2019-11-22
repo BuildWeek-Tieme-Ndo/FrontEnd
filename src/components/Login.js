@@ -3,13 +3,14 @@ import LoginForm from './LoginForm'
 
 const Login = props => {
 
-  const fakeLogin = props => {  // TODO: Remove
-    localStorage.setItem('token', "Secret decoder ring.");
-  }
+  // const fakeLogin = props => {  // TODO: Remove
+  //   localStorage.setItem('token', "Secret decoder ring.");
+  // }
+  // <button onClick={fakeLogin}>Temporary Fake Login!</button>
 
   return (
     <div>
-      <button onClick={fakeLogin}>Temporary Fake Login!</button>
+
       <LoginForm history={props.history} />
     </div>
   )
