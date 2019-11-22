@@ -36,7 +36,7 @@ const AddClientForm = props => {
             className='field'
             name='goal'
             type='text'
-            placeholder='Due Date'
+            placeholder='Goal'
           />
 
           <label/>Harvest
@@ -44,12 +44,12 @@ const AddClientForm = props => {
             className='field'
             name='harvest'
             type='text'
-            placeholder='Due Date'
+            placeholder='Harvest'
           />
 
         </div>
 
-        <button type='submit' className='submitBtn'>Sign Up</button>
+        <button type='submit' className='submitBtn'>Add</button>
       </Form>
     </div>
   )

@@ -70,7 +70,7 @@ const AddLoanForm = () => {
           <ErrorMessage name="due_date" component='p' className='error'/>
         </div>
 
-        <button type='submit' className='submitBtn'>Sign Up</button>
+        <button type='submit' className='submitBtn'>Add</button>
       </Form>
     </div>
   )
