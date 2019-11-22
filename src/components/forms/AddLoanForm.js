@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { withFormik, Form, Field, ErrorMessage } from 'formik';
 import authAxios from '../../utils/authaxios';
-import * as Yup from 'yup';
-import axios from 'axios';
+// import * as Yup from 'yup';
 
 const AddLoanForm = () => {
   // console.log ("AddLoanForm Props:", props);
@@ -13,7 +12,7 @@ const AddLoanForm = () => {
     due_date:   "",    // Required
   }
 
-  const handleSubmit = (values, { setStatus }) => {
+  const handleSubmit = (values, { setStatus }) => { // FIXME: Why isn't this called?
     // payload.client_id = localStorage.getItem('userID');
     // authAxios call
     authAxios.put('https://tiemendo.herokuapp.com/api/', payload)
