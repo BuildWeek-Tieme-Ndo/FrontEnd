@@ -8,6 +8,8 @@ const signedInReducer = (state=[], action) => {
     case CLIENTS_NEW_LIST:
       // Completely replace client list
       return action.payload;
+    case CLIENT_ADD:
+      return state.push(action.payload);
     default:
       // Don't change client list
       return state;
