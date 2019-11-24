@@ -9,7 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 function SimpleTable(props) {
-
+  console.log ("SimpleTable props:",props);
   return (
     <Paper>
       <Table aria-label="simple table">
@@ -18,18 +18,20 @@ function SimpleTable(props) {
             <TableCell>Name</TableCell>
             <TableCell>Village</TableCell>
             <TableCell>Loan Amount</TableCell>
-            <TableCell>Started</TableCell>
+            <TableCell>Init Date</TableCell>
+            <TableCell>Due Date</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {/* props.map(row => (
-            <TableRow key={props.name}>
-              <TableCell component="th" scope="row">{props.name}</TableCell>
-              <TableCell>{props.village}</TableCell>
-              <TableCell>{props.loan_amt}</TableCell>
-              <TableCell>{props.loan_init}</TableCell>
+          {props.map(row => (
+            <TableRow key={row.name}>
+              <TableCell component="th" scope="row">{row.name}</TableCell>
+              <TableCell>{row.village}</TableCell>
+              <TableCell>{row.loan_amt}</TableCell>
+              <TableCell>{row.init_date}</TableCell>
+              <TableCell>{row.due_date}</TableCell>
             </TableRow>
-          )) */}
+          ))}
         </TableBody>
       </Table>
     </Paper>
@@ -56,7 +58,7 @@ const Summary = props => {
     <div className="workspace">
       <h2>Reports of loan information</h2>
 
-      {SimpleTable(/* Get the state data here */)}
+      {SimpleTable(allRows)}
     </div>
   )
 }
