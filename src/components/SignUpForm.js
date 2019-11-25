@@ -2,7 +2,7 @@ import React from 'react';
 import { withFormik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
-
+import { BASE_URL } from '../constants';
 
 function SignUpForm({touched, errors}) {
   return(
@@ -86,7 +86,7 @@ const FormikSignUp = withFormik({
       email: values.email,
       password: values.password
     };
-    axios.post('https://tiemendo.herokuapp.com/api/register', payload)
+    axios.post(BASE_URL + '/register', payload)
     .then(res => {
       console.log('Sucessfully registered:', res);
       setStatus(res.data);

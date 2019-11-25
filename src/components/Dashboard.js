@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import axiosWithAuth from '../utils/authaxios';
+import { BASE_URL } from '../constants';
 
 const Dashboard = props => {
   const userName = localStorage.getItem("userName");
@@ -8,7 +9,7 @@ const Dashboard = props => {
 
   useEffect(() => {
   // -- Get loans --
-  axiosWithAuth().get('https://tiemendo.herokuapp.com/api/auth/loans')
+  axiosWithAuth().get(BASE_URL + '/auth/loans')
     .then (res => {
       console.log(localStorage.getItem('token'));
       dispatch({
@@ -23,7 +24,7 @@ const Dashboard = props => {
   );
 
   // -- Get clients --
-  axiosWithAuth().get('https://tiemendo.herokuapp.com/api/auth/clients')
+  axiosWithAuth().get(BASE_URL + '/auth/clients')
   .then ( res => {
     console.log(res);
     dispatch({

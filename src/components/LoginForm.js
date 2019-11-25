@@ -2,6 +2,7 @@ import React from 'react';
 import { withFormik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import { BASE_URL } from '../constants';
 
 function LoginForm({ touched, errors }) {
 
@@ -61,7 +62,7 @@ const FormikLogin = withFormik({
     };
     console.log("Sending:", payload);
 
-    axios.post('https://tiemendo.herokuapp.com/api/login', payload)
+    axios.post(BASE_URL + '/login', payload)
     .then(res => {
       console.log('Success:', res.data);
       localStorage.setItem('token', res.data.payload);
