@@ -2,6 +2,7 @@ import React from 'react';
 // import { useDispatch } from 'react-redux';
 import { withFormik, Form, Field, ErrorMessage } from 'formik';
 import axiosWithAuth from '../../utils/authaxios';
+import * as c from '../../actions';
 
 const AddClientForm = props => {
   // const dispatch = props.dispatch;
@@ -86,7 +87,7 @@ const FormikAddClientForm = withFormik({
         console.log(res.data)
         setStatus(res.data) //TODO: Take out maybe??
         // values.history.push('./clients')
-        values.dispatch('CLIENT_ADD', res.data);
+        values.dispatch(c.ADD_CLIENT, res.data);
       })
       .catch( error => {
         console.log("error", error.message)

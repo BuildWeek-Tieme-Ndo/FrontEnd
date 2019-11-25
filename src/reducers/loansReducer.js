@@ -1,17 +1,18 @@
-export const LOANS_NEW_LIST = 'LOANS_NEW_LIST';
-export const LOAN_ADD = 'LOAN_ADD';
-export const LOAN_MODIFY = 'LOAN_MODIFY';
-export const LOAN_DELETE = 'LOAN_DELETE';
+import * as c from '../actions';
 
-const signedInReducer = (state=[], action) => {
+const loansReducer = (state=[], action) => {
   switch(action.type) {
-    case LOANS_NEW_LIST:
+    case c.GET_LOAN_LIST:
       // Completely replace loans list
       return action.payload;
+    case c.ADD_LOAN:  // push
+      return state;
+    case c.MODIFY_LOAN:
+      return state;   // find/delete
     default:
       // Don't change loans list
       return state;
   }
 }
 
-export default signedInReducer;
+export default loansReducer;

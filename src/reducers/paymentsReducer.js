@@ -1,17 +1,18 @@
-export const PAYMENTS_NEW_LIST = 'PAYMENTS_NEW_LIST';
-export const PAYMENT_ADD = 'PAYMENT_ADD';
-export const PAYMENT_MODIFY = 'PAYMENT_MODIFY';
-export const PAYMENT_DELETE = 'PAYMENT_DELETE';
+import * as c from '../actions';
 
-const signedInReducer = (state=[], action) => {
+const paymentsReducer = (state=[], action) => {
   switch(action.type) {
-    case PAYMENTS_NEW_LIST:
+    case c.GET_PAYMENT_LIST:
       // Completely replace payment list
       return action.payload;
+    case c.ADD_PAMENT:
+      return state; // Push
+    case c.MODIFY_PAYMENT:
+      return state; // Find, remove
     default:
       // Don't change payment list
       return state;
   }
 }
 
-export default signedInReducer;
+export default paymentsReducer;

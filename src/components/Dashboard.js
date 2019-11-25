@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import axiosWithAuth from '../utils/authaxios';
 import { BASE_URL } from '../constants';
+import * as c from '../actions';
 
 const Dashboard = props => {
   const userName = localStorage.getItem("userName");
@@ -13,7 +14,7 @@ const Dashboard = props => {
     .then (res => {
       console.log(localStorage.getItem('token'));
       dispatch({
-        type: 'LOANS_NEW_LIST',
+        type: c.GET_LOAN_LIST,
         payload: res.data
       })
     })
@@ -28,7 +29,7 @@ const Dashboard = props => {
   .then ( res => {
     console.log(res);
     dispatch({
-      type: 'CLIENTS_NEW_LIST', // TODO: Figure out how to get the exported version
+      type: c.GET_CLIENT_LIST,
       payload: res.data
     });
   })
