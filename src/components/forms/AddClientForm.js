@@ -1,30 +1,11 @@
 import React from 'react';
+// import { useDispatch } from 'react-redux';
 import { withFormik, Form, Field, ErrorMessage } from 'formik';
-import authAxios from '../../utils/authaxios';
+import axiosWithAuth from '../../utils/authaxios';
 
-const AddClientForm = () => {
-
-  const payload = {
-    name:     "",    // Required
-    village:  "",    // Optional ( Let's make this required )
-    user_id:  "",    // Required ( Not in form )
-    goal:     "",    // Optional
-    harvest:  "",    // Optional
-  }
-
-  const handleSubmit = (values, { setStatus }) => {
-    payload.user_id = localStorage.getItem('userID');
-    // authAxios call
-    authAxios.get('https://tiemendo.herokuapp.com/api/', payload)
-      .then(res => {
-        console.log(res.data)
-        setStatus(res.data) //TODO: Take out maybe??
-        values.history.push('./clients')
-      })
-      .catch( error => {
-        console.log("error", error.message)
-      })
-  };
+const AddClientForm = props => {
+  // const dispatch = props.dispatch;
+  console.log("AddClientForm props:", props);
 
   return (
     <div>
@@ -34,11 +15,11 @@ const AddClientForm = () => {
         <div className='flexDiv'>
           <label/>Name
           <Field
-             className='field'
-             name='name'
-             type='text'
-             placeholder='Name'
-           />
+            className='field'
+            name='name'
+            type='text'
+            placeholder='Name'
+          />
           <ErrorMessage name="name" component='p' className='error'/>
 
           <label/>Village
@@ -55,7 +36,7 @@ const AddClientForm = () => {
             className='field'
             name='goal'
             type='text'
-            placeholder='Due Date'
+            placeholder='Goal'
           />
 
           <label/>Harvest
@@ -63,12 +44,12 @@ const AddClientForm = () => {
             className='field'
             name='harvest'
             type='text'
-            placeholder='Due Date'
+            placeholder='Harvest'
           />
 
         </div>
 
-        <button type='submit' className='submitBtn'>Sign Up</button>
+        <button type='submit' className='submitBtn'>Add</button>
       </Form>
     </div>
   )
@@ -77,15 +58,40 @@ const AddClientForm = () => {
 
 //Using Formik ----------------------------------------------------
 const FormikAddClientForm = withFormik({
-  mapPropsToValues({ name, village, goal, harvest, history }) {
+
+  mapPropsToValues({ name, village, goal, harvest, history, dispatch}) {
     return {
       name: name || '',
       village: village || '',
+      user_id: localStorage.getItem('userID'),
       goal: goal || '',
       harvest: harvest || '',
-      history: history
+      history: history,
+      dispatch: dispatch,
     };
   },
+
+  handleSubmit(values, { setStatus }) {
+    // const payload.user_id = localStorage.getItem('userID');
+    const payload = {
+      name: values.name,
+      village: values.village,
+      user_id: values.user_id,
+      goal: values.goal,
+      harvest: values.harvest,
+    };
+    // authAxios call
+    axiosWithAuth().post('https://tiemendo.herokuapp.com/api/auth/clients', payload)
+      .then(res => {
+        console.log(res.data)
+        setStatus(res.data) //TODO: Take out maybe??
+        // values.history.push('./clients')
+        values.dispatch('CLIENT_ADD', res.data);
+      })
+      .catch( error => {
+        console.log("error", error.message)
+      })
+  }
 })(AddClientForm);
 
 export default FormikAddClientForm;

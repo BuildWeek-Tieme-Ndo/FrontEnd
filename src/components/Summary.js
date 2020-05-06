@@ -1,6 +1,5 @@
 import React from 'react';
-import { useDispatch, connect } from 'react-redux';
-// import authAxios from '../utils/authaxios';
+import { connect } from 'react-redux';
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -8,18 +7,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-
-
-// Material UI Table --------------------------------------------------
-// interface Props {
-//   rows: [{
-//     name: '',
-//     village: '',
-//     loan_amt: '',
-//     loan_init: ''
-//   }]
-// };
-
 
 function SimpleTable(props) {
 
@@ -53,21 +40,17 @@ function SimpleTable(props) {
 const Summary = props => {
   // const dispatch = useDispatch();
   console.log("Summary props:", props);
-  
-  // FIXME: Infinite loop. Use a useEffect?
-  // useEffect(() => {
-  //   authAxios.get('https://tiemendo.herokuapp.com/api/auth/loans')
-  //   .then (res => {
-  //     console.log(res);
-  //     dispatch({
-  //       type: 'LOANS_NEW_LIST',
-  //       payload: res.data
-  //     })
-  //   })
-  //   .catch(err => console.log('Loan list error:', err)
-  //   );
-  // },[dispatch]);
 
+  let allRows=[];
+  for (let i=0; i<props.loans.length; i++) {
+    let client = props.clients.find( ({ id }) => id === props.loans[i].client_id);
+    console.log(client.name);
+    // The next line causes key collisions, so order is important:
+    let currentRow = {...client, ...props.loans[i]};
+    allRows.push(currentRow);
+  }
+
+  console.log(allRows);
 
   return (
     <div className="workspace">

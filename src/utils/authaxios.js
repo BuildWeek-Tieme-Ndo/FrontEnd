@@ -11,5 +11,4 @@ const axiosWithAuth = () => {
   });
 }
 
-const authAxios = axiosWithAuth();
-export default authAxios;
+export default axiosWithAuth;
